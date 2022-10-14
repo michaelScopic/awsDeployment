@@ -89,4 +89,3 @@ cp -v tmp/plain-text-symbols.toml ~/.config/starship.toml 2>/dev/null
 echo -e "\e[41mYou will need to manually change your shell to /bin/zsh...\e[0m" ; sleep 2
 chmod +x tmp/./pluginInstall.sh
 bash -c "tmp/./pluginInstall.sh" 
-
