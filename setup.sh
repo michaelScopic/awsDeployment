@@ -36,7 +36,7 @@ echo -e "
 | \e[31mRemoving old Docker versions (if any)\e[0m |
 +---------------------------------------+" 
 sleep 1
-sudo apt-get remove docker docker-engine docker.io containerd runc
+sudo apt-get remove -y docker docker-engine docker.io containerd runc
 # Installing Docker
 echo -e "
 +----------------------+
@@ -44,11 +44,7 @@ echo -e "
 +----------------------+" 
 sleep 0.5
 
-sudo apt-get install \
-    ca-certificates \
-    curl \
-    gnupg \
-    lsb-release
+sudo apt-get install ca-certificates curl gnupg lsb-release
 
 sudo mkdir -p /etc/apt/keyrings
 
@@ -59,11 +55,7 @@ echo \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 sudo apt-get update && \
-sudo apt-get install \
-    docker-ce \ 
-    docker-ce-cli \
-    containerd.io \ 
-    docker-compose-plugin
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
 # Add user to docker group
 sudo groupadd docker
@@ -80,16 +72,11 @@ sleep 2
 
 # -- Install cockpit --
 . /etc/os-release
-sudo apt install -t ${VERSION_CODENAME}-backports cockpit 
+sudo apt install -y -t ${VERSION_CODENAME}-backports cockpit 
 
 
 # -- Install shell tools --
-sudo apt install -y \
-    git \
-    zsh \
-    vim \
-    duf \ # cleaner alternative to 'df'
-    neofetch 
+sudo apt install -y git zsh vim 
 
 # install starship with snap
 sudo snap install starship
