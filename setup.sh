@@ -36,7 +36,7 @@ echo -e "
 | \e[31mRemoving old Docker versions (if any)\e[0m |
 +---------------------------------------+" 
 sleep 1
-sudo apt-get remove -y docker docker-engine docker.io containerd runc
+sudo apt-get remove -y docker docker-engine docker.io containerd runc 2>/dev/null
 # Installing Docker
 echo -e "
 +----------------------+
@@ -46,7 +46,7 @@ sleep 0.5
 
 sudo apt-get install ca-certificates curl gnupg lsb-release
 
-sudo mkdir -p /etc/apt/keyrings
+sudo mkdir -p /etc/apt/keyrings 2>/dev/null
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 
@@ -59,7 +59,7 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plu
 
 # Add user to docker group
 sudo groupadd docker
-sudo usermod -aG docker $USER && \
+sudo usermod -aG docker $USER 2>/dev/null && \
 echo -e "
 +---------------------------------------+
 | \e[32mInstalled Docker!\e[0m                     |
@@ -80,11 +80,15 @@ sudo apt install -y git zsh vim
 
 # install starship with snap
 sudo snap install starship
-mkdir ~/.config
+mkdir ~/.config 2>/dev/null
 
-# clone my dotfiles
-git clone https://github.com/michaelScopic/dotfiles ~/dotfiles
-cd ~/dotfiles/config/starship
-cp -v plain-text-symbols.toml ~/.config/starship.toml
+# deploy my dotfiles
+mkdir tmp 2>/dev/null ; cd tmp
+wget https://raw.githubusercontent.com/michaelScopic/dotfiles/main/zsh/pluginInstall.sh 
+wget https://raw.githubusercontent.com/michaelScopic/dotfiles/main/zsh/zshrc
+wget https://raw.githubusercontent.com/michaelScopic/dotfiles/main/config/starship/rounded.toml 
 
+cp -v plain-text-symbols.toml ~/.config/starship.toml 2>/dev/null
+echo -e "\e[41mYou will need to manually change your shell to /bin/zsh...\e[0m"
+cd ~/dotfiles/zsh && bash -c "./pluginInstall.sh" 
 
