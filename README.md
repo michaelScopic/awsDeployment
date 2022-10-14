@@ -19,5 +19,6 @@ Now lets set everything up with `setup.sh`:
 ```sh
 ./setup.sh
 ```
+* Note: If you can't run `setup.sh`, make it executable with `chmod +x setup.sh` and then run the script again.
 
 **WIP**
