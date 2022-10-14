@@ -96,7 +96,7 @@ sudo snap install starship
 mkdir ~/.config
 
 # clone my dotfiles
-git clone https://github.com/michaelScopic/dotfiles ~
+git clone https://github.com/michaelScopic/dotfiles ~/dotfiles
 cd ~/dotfiles/config/starship
 cp -v plain-text-symbols.toml ~/.config/starship.toml
 
