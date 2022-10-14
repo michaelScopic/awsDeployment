@@ -1,46 +1,50 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 # !! NOTES:
 #   -- !! This script is made for Ubuntu x86_64 machines. !! --
 #
 #       You will manually need to change the script to adapt it to other
 #       distros or architectures.
 
-echo -e "
+# Source initalizer script
+. ./init.sh 
+
+# ----- Begin actual script -----
+echo "
 +----------------------------------------+
-| \e[32mUsing '\e[33mapt\e[32m' to install dependancies...\e[0m |
+|$yellow Using$green apt$yellow to install dependancies...$reset   |
 +----------------------------------------+"
 sleep 0.5
 
 # ---- Update apt repositories and then upgrade local packages ----
 sudo apt update && \
 sudo apt upgrade -y && \
-echo -e "\e[33m --- Note: updated/upgraded packages... --- \e[0m"
+echo "$green--- Note: updated/upgraded packages... --- $reset"
 
 
 # ---- Install dependancies ---- 
-echo -e "
+echo "
 +-----------------------------+
-| \e[33mInstalling dependancies...\e[0m  |
-| \e[32m Depenancy list: \e[0m           |
-|  \e[32m docker \e[0m                   |   
-|  \e[32m cockpit \e[0m                  |
-|  \e[32m zsh \e[0m                      |
-|  \e[32m starship \e[0m                 |
+|$yellow Installing dependancies...$reset  |
+| $blue Depenancy list: $reset           |
+|  $blue docker $reset                   |   
+|  $blue cockpit $reset                  |
+|  $blue zsh $reset                      |
+|  $blue starship $reset                 |
 +-----------------------------+
 " 
 sleep 2
 # -- Docker --
 # Remove old docker versions
-echo -e "
+echo  "
 +---------------------------------------+
-| \e[31mRemoving old Docker versions (if any)\e[0m |
+|$red Removing old Docker versions (if any)$reset |
 +---------------------------------------+" 
 sleep 1
-sudo apt-get remove -y docker docker-engine docker.io containerd runc 2>/dev/null
+sudo apt-get remove -y docker dockerngine docker.io containerd runc 2>/dev/null
 # Installing Docker
-echo -e "
+echo "
 +----------------------+
-| \e[33mInstalling Docker... \e[0m|
+|$green Installing Docker... $reset|
 +----------------------+" 
 sleep 0.5
 
@@ -58,34 +62,61 @@ sudo apt-get update && \
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
 # Add user to docker group
-sudo groupadd docker
+sudo groupadd docker 2>/dev/null
 sudo usermod -aG docker $USER 2>/dev/null && \
-echo -e "
+echo "
 +---------------------------------------+
-| \e[32mInstalled Docker!\e[0m                     |
-| \e[32mAdded user to docker group! \e[0m          |
+|$green Installed Docker! $reset                    |
+|$green Added user to docker group! $reset          |
 |                                       |
-| \e[41mYou should exit and log back in again \e[0m|
-| \e[41mfor the group change to take effect.\e[0m  |
+|$yellowbg You should exit and log back in again $reset|
+|$yellowbg for the group change to take effect.$reset  |
 +---------------------------------------+"
 sleep 2
 
 # -- Install cockpit --
+echo "
++-----------------------+
+|$yellow Installing Cockpit... $reset|
++-----------------------+"
+sleep 1
 . /etc/os-release
 sudo apt install -y -t ${VERSION_CODENAME}-backports cockpit 
 
 
 # -- Install shell tools --
+echo "
++---------------------------+
+|$yellow Installing shell tools... $reset|
++---------------------------+
+"
 sudo apt install -y git zsh vim 
 sudo snap install starship
-mkdir ~/.config 2>/dev/null
 
 # - Dotfiles -
-mkdir tmp 2>/dev/null
-wget -P tmp https://raw.githubusercontent.com/michaelScopic/dotfiles/main/zsh/pluginInstall.sh 2>/dev/null
-wget -P tmp https://raw.githubusercontent.com/michaelScopic/dotfiles/main/zsh/zshrc 2>/dev/null
-wget -P tmp https://raw.githubusercontent.com/michaelScopic/dotfiles/main/config/starship/rounded.toml 2>/dev/null
-cp -v tmp/plain-text-symbols.toml ~/.config/starship.toml 2>/dev/null
-echo -e "\e[41mYou will need to manually change your shell to /bin/zsh...\e[0m" ; sleep 2
-chmod +x tmp/./pluginInstall.sh
-bash -c "tmp/./pluginInstall.sh" 
+mkdir {tmp,~/.config} 
+wget -P tmp https://raw.githubusercontent.com/michaelScopic/dotfiles/main/zsh/pluginInstall.sh 
+wget -P tmp https://raw.githubusercontent.com/michaelScopic/dotfiles/main/zsh/zshrc 
+wget -P tmp https://raw.githubusercontent.com/michaelScopic/dotfiles/main/config/starship/plain-text-symbols.toml 
+
+cp -v tmp/plain-text-symbols.toml ~/.config/starship.toml 
+echo "$redbg You will need to manually change your shell to /bin/zsh...$reset" 
+echo "$cyan-----------------------------------------$reset" ; sleep 2
+cd tmp
+chmod +x ./pluginInstall.sh
+echo "$red Type $reset exit $red after the next script is finished!$reset" ; sleep 3
+bash -c "./pluginInstall.sh" 
+
+
+
+
+
+# Finish setup
+cd $currentDir
+rm -rf tmp
+
+echo "
+####################
+#$green Done with setup! $reset#
+#    $red Exiting...$reset   #
+####################"
