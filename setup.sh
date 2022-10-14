@@ -16,6 +16,7 @@ sudo apt update && \
 sudo apt upgrade -y && \
 echo -e "\e[33m --- Note: updated/upgraded packages... --- \e[0m"
 
+
 # ---- Install dependancies ---- 
 echo -e "
 +-----------------------------+
@@ -77,7 +78,26 @@ echo -e "
 +---------------------------------------+"
 sleep 2
 
-# Install cockpit
+# -- Install cockpit --
+. /etc/os-release
+sudo apt install -t ${VERSION_CODENAME}-backports cockpit 
 
-# Install shell tools
+
+# -- Install shell tools --
+sudo apt install -y \
+    git \
+    zsh \
+    vim \
+    duf \ # cleaner alternative to 'df'
+    neofetch 
+
+# install starship with snap
+sudo snap install starship
+mkdir ~/.config
+
+# clone my dotfiles
+git clone https://github.com/michaelScopic/dotfiles ~
+cd ~/dotfiles/config/starship
+cp -v plain-text-symbols.toml ~/.config/starship.toml
+
 
