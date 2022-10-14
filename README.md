@@ -19,7 +19,5 @@ Now lets set everything up with `setup.sh`:
 ```sh
 ./setup.sh
 ```
-And let everything run!
 
 **WIP**
-
