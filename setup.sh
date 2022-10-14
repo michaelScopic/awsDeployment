@@ -77,18 +77,16 @@ sudo apt install -y -t ${VERSION_CODENAME}-backports cockpit
 
 # -- Install shell tools --
 sudo apt install -y git zsh vim 
-
-# install starship with snap
 sudo snap install starship
 mkdir ~/.config 2>/dev/null
 
-# deploy my dotfiles
-mkdir tmp 2>/dev/null ; cd tmp
-wget https://raw.githubusercontent.com/michaelScopic/dotfiles/main/zsh/pluginInstall.sh 
-wget https://raw.githubusercontent.com/michaelScopic/dotfiles/main/zsh/zshrc
-wget https://raw.githubusercontent.com/michaelScopic/dotfiles/main/config/starship/rounded.toml 
-
-cp -v plain-text-symbols.toml ~/.config/starship.toml 2>/dev/null
-echo -e "\e[41mYou will need to manually change your shell to /bin/zsh...\e[0m"
-cd ~/dotfiles/zsh && bash -c "./pluginInstall.sh" 
+# - Dotfiles -
+mkdir tmp 2>/dev/null
+wget -P tmp https://raw.githubusercontent.com/michaelScopic/dotfiles/main/zsh/pluginInstall.sh 2>/dev/null
+wget -P tmp https://raw.githubusercontent.com/michaelScopic/dotfiles/main/zsh/zshrc 2>/dev/null
+wget -P tmp https://raw.githubusercontent.com/michaelScopic/dotfiles/main/config/starship/rounded.toml 2>/dev/null
+cp -v tmp/plain-text-symbols.toml ~/.config/starship.toml 2>/dev/null
+echo -e "\e[41mYou will need to manually change your shell to /bin/zsh...\e[0m" ; sleep 2
+chmod +x tmp/./pluginInstall.sh
+bash -c "tmp/./pluginInstall.sh" 
 
