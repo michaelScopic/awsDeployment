@@ -7,7 +7,7 @@ Automated deployment for my AWS CSA machines using shell scripts.
 # Installation (WIP)
 Clone this repo to the machine you want to deploy on:
 ```sh
-git clone https://github.com/michaelScopic/awsDeployment
+git clone https://github.com/michaelScopic/awsDeployment.git
 ```
 
 Then cd into the repo:

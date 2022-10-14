@@ -24,8 +24,8 @@ echo -e "
 | \e[32m Depenancy list: \e[0m           |
 |  \e[32m docker \e[0m                   |   
 |  \e[32m cockpit \e[0m                  |
-|  \e[32m git \e[0m                      |
 |  \e[32m zsh \e[0m                      |
+|  \e[32m starship \e[0m                 |
 +-----------------------------+
 " 
 sleep 2
@@ -65,8 +65,8 @@ echo -e "
 | \e[32mInstalled Docker!\e[0m                     |
 | \e[32mAdded user to docker group! \e[0m          |
 |                                       |
-| \e[33mYou should exit and log back in again \e[0m|
-| \e[33mfor the group change to take effect.\e[0m  |
+| \e[41mYou should exit and log back in again \e[0m|
+| \e[41mfor the group change to take effect.\e[0m  |
 +---------------------------------------+"
 sleep 2
 
