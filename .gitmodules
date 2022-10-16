@@ -1,0 +1,3 @@
+[submodule "awsDeployment"]
+	path = awsDeployment
+	url = https://github.com/jm1021/awsDeployment/

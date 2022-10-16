@@ -1,0 +1,45 @@
+server {
+    server_name flask.nighthawkcodingsociety.com;
+
+    location / {
+        proxy_pass http://localhost:8086;
+	# Simple requests
+	if ($request_method ~* "(GET|POST|PUT)") {
+      		add_header "Access-Control-Allow-Origin"  *;
+	}
+
+	# Preflighted requests
+	if ($request_method = OPTIONS ) {
+		add_header "Access-Control-Allow-Origin"  *;
+		add_header "Access-Control-Allow-Methods" "GET, POST, PUT, OPTIONS, HEAD";
+		add_header "Access-Control-Allow-Headers" "Authorization, Origin, X-Requested-With, Content-Type, Accept";
+		return 200;
+	}
+    }
+
+
+    listen [::]:443 ssl; # managed by Certbot
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/csa.nighthawkcodingsociety.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/csa.nighthawkcodingsociety.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+
+
+
+}
+server {
+    if ($host = flask.nighthawkcodingsociety.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    server_name flask.nighthawkcodingsociety.com;
+    listen 80;
+    listen [::]:80;
+    return 404; # managed by Certbot
+
+
+}
