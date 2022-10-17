@@ -16,8 +16,7 @@ echo "
 sleep 0.5
 
 # ---- Update apt repositories and then upgrade local packages ----
-sudo apt update && \
-sudo apt upgrade -y && \
+sudo apt update &> /dev/null && sudo apt upgrade -y &> /dev/null &&
 echo "$green--- Note: updated/upgraded packages... --- $reset"
 
 
@@ -40,7 +39,7 @@ echo  "
 |$red Removing old Docker versions (if any)$reset |
 +---------------------------------------+" 
 sleep 1
-sudo apt-get remove -y docker dockerngine docker.io containerd runc 2>/dev/null
+sudo apt-get remove -y docker dockerngine docker.io containerd runc &> /dev/null 
 # Installing Docker
 echo "
 +----------------------+
@@ -48,9 +47,9 @@ echo "
 +----------------------+" 
 sleep 0.5
 
-sudo apt-get install ca-certificates curl gnupg lsb-release
+sudo apt install ca-certificates curl gnupg lsb-release 
 
-sudo mkdir -p /etc/apt/keyrings 2>/dev/null
+sudo mkdir -p /etc/apt/keyrings &> /dev/null
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 
@@ -58,12 +57,12 @@ echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-sudo apt-get update && \
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+sudo apt update && \
+sudo apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin &> /dev/null
 
 # Add user to docker group
-sudo groupadd docker 2>/dev/null
-sudo usermod -aG docker $USER 2>/dev/null && \
+sudo groupadd docker &> /dev/null
+sudo usermod -aG docker $USER &> /dev/null && \
 echo "
 +---------------------------------------+
 |$green Installed Docker! $reset                    |
@@ -81,7 +80,7 @@ echo "
 +-----------------------+"
 sleep 1
 . /etc/os-release
-sudo apt install -y -t ${VERSION_CODENAME}-backports cockpit 
+sudo apt install -y -t ${VERSION_CODENAME}-backports cockpit &> /dev/null
 
 
 # -- Install shell tools --
@@ -90,12 +89,11 @@ echo "
 |$yellow Installing shell tools... $reset|
 +---------------------------+
 "
-sudo apt install -y git zsh vim 
-sudo apt install -y snapd
-sudo snap install starship
+sudo apt install -y git zsh vim &> /dev/null
+curl -sS https://starship.rs/install.sh | sh
 
 # - Dotfiles -
-mkdir {tmp,~/.config} 
+mkdir {tmp,~/.config} &> /dev/null
 wget -P tmp https://raw.githubusercontent.com/michaelScopic/dotfiles/main/zsh/pluginInstall.sh 
 wget -P tmp https://raw.githubusercontent.com/michaelScopic/dotfiles/main/zsh/zshrc 
 wget -P tmp https://raw.githubusercontent.com/michaelScopic/dotfiles/main/config/starship/plain-text-symbols.toml 
