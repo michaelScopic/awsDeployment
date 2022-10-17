@@ -20,6 +20,7 @@ yellow='\e[33m' && echo "$yellow Yellow $reset"
 blue='\e[34m' && echo "$blue Blue $reset"
 purple='\e[35m' && echo "$purple Purple $reset"
 cyan='\e[36m' && echo "$cyan Cyan $reset"
+sleep 0.3
 echo ""
 redbg='\e[41m' && echo "$redbg Red background $reset"
 greenbg='\e[42m' && echo "$greenbg Green background $reset"
@@ -32,7 +33,7 @@ echo "
 | $green Done setting colors! $reset|
 +-----------------------+"
 
-sleep 1
+sleep 0.5
 echo ""
 
 # --- Print out basic info ---
@@ -55,4 +56,4 @@ echo "
 #$red Continuing with original script...$reset #
 ######################################"
 
-sleep 2.5
+sleep 3

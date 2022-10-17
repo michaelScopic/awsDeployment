@@ -91,6 +91,7 @@ echo "
 +---------------------------+
 "
 sudo apt install -y git zsh vim 
+sudo apt install -y snapd
 sudo snap install starship
 
 # - Dotfiles -
