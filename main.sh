@@ -7,4 +7,6 @@
 # Source initalizer script
 . ./init.sh 
 
+# TODO: Put nginx files where they should be (no clue where they go tho)
+# TODO: Automate deploying nginx 
 # WIP
