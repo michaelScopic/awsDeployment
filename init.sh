@@ -1,56 +1,56 @@
-#!/usr/bin/env sh
+#!/bin/bash
 # Initalizer script
 
-echo " 
+echo -e " 
 +-----------------------+
 | Initalizing script... |
 +-----------------------+ "
 sleep 1
 
 currentDir=$(pwd)
-echo "Current directory: $currentDir"
-echo ""
+echo -e "Current directory: $currentDir"
+echo -e ""
 
 # -- Set colors --
-echo " --- Setting colors... ---"
-reset='\e[0m' && echo "$reset Normal text"
-red='\e[31m' && echo "$red Red $reset"
-green='\e[32m' && echo "$green Green $reset"
-yellow='\e[33m' && echo "$yellow Yellow $reset"
-blue='\e[34m' && echo "$blue Blue $reset"
-purple='\e[35m' && echo "$purple Purple $reset"
-cyan='\e[36m' && echo "$cyan Cyan $reset"
+echo -e " --- Setting colors... ---"
+reset='\e[0m' && echo -e "$reset Normal text"
+red='\e[31m' && echo -e "$red Red $reset"
+green='\e[32m' && echo -e "$green Green $reset"
+yellow='\e[33m' && echo -e "$yellow Yellow $reset"
+blue='\e[34m' && echo -e "$blue Blue $reset"
+purple='\e[35m' && echo -e "$purple Purple $reset"
+cyan='\e[36m' && echo -e "$cyan Cyan $reset"
 sleep 0.3
-echo ""
-redbg='\e[41m' && echo "$redbg Red background $reset"
-greenbg='\e[42m' && echo "$greenbg Green background $reset"
-yellowbg='\e[43m' && echo "$yellowbg Yellow background $reset"
-bluebg='\e[44m' && echo "$bluebg Blue background $reset"
-purplebg='\e[45m' && echo "$purplebg Purple background $reset"
-cyanbg='\e[46m' && echo "$cyanbg Cyan background $reset"
-echo "
+echo -e ""
+redbg='\e[41m' && echo -e "$redbg Red background $reset"
+greenbg='\e[42m' && echo -e "$greenbg Green background $reset"
+yellowbg='\e[43m' && echo -e "$yellowbg Yellow background $reset"
+bluebg='\e[44m' && echo -e "$bluebg Blue background $reset"
+purplebg='\e[45m' && echo -e "$purplebg Purple background $reset"
+cyanbg='\e[46m' && echo -e "$cyanbg Cyan background $reset"
+echo -e "
 +-----------------------+
 | $green Done setting colors! $reset|
 +-----------------------+"
 
 sleep 0.5
-echo ""
+echo -e ""
 
 # --- Print out basic info ---
-echo "---------- Basic info ----------"
+echo -e "---------- Basic info ----------"
 # Print the distro 
-echo   "$green Distro:$reset $(lsb_release -d | cut -f 2- )"
+echo -e   "$green Distro:$reset $(lsb_release -d | cut -f 2- )"
 # Print kernel version
-echo "$yellow Kernel:$reset $(uname -r) $(uname -o)" 
+echo -e "$yellow Kernel:$reset $(uname -r) $(uname -o)" 
 # Print shell 
-echo "$blue Shell:$reset $SHELL"
+echo -e "$blue Shell:$reset $SHELL"
 # Print hostname
-echo "$purple Hostname:$reset $(cat /etc/hostname)"
+echo -e "$purple Hostname:$reset $(cat /etc/hostname)"
 # Print current user (is user root?)
-echo "$cyan User:$reset $(whoami)"
-echo "--------------------------------"
+echo -e "$cyan User:$reset $(whoami)"
+echo -e "--------------------------------"
 
-echo "
+echo -e "
 ######################################
 #$green        Done initalizing! $reset          #
 #$red Continuing with original script...$reset #
