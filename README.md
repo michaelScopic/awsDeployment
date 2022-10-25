@@ -8,6 +8,8 @@ Automated deployment for my AWS CSA machines using shell scripts.
 
 ### This repo was made for Ubuntu x86_64 based machines
 
+### Considering learning/using Ansible for this (?)
+
 ## Installation (WIP)
 
 Clone this repo to the machine you want to deploy on:
