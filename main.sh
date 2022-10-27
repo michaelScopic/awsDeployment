@@ -9,4 +9,5 @@
 
 # TODO: Put nginx files where they should be (no clue where they go tho)
 # TODO: Automate deploying nginx 
+# TODO: Look into using Ansible for automation?? 
 # WIP
