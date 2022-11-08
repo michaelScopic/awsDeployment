@@ -2,15 +2,20 @@
 
 Automated deployment for my AWS CSA machines using shell scripts.
 
-## NOTE
+## NOTES:
+This is **heavily** WIP. Nothing is in a usable state as of now.
 
-### This is **heavily** WIP. Nothing is in a usable state as of now
+This repo was made for Ubuntu x86_64 based machines!!!
 
-### This repo was made for Ubuntu x86_64 based machines
+Considering learning/using Ansible for this (?)
 
-### Considering learning/using Ansible for this (?)
 
 ## Installation (WIP)
+
+Prerequisites:
+```sh
+sudo apt install lsb-release tput bash zsh curl wget git 
+```
 
 Clone this repo to the machine you want to deploy on:
 
