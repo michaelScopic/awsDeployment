@@ -51,7 +51,7 @@ echo -e ""
 # --- Print out basic info ---
 echo -e "---------- Basic info ----------"
 # Print the distro 
-echo -e   "$green Distro:$reset $(lsb_release -d | cut -f 2- )"
+echo -e "$green Distro:$reset $(lsb_release -d | cut -f 2- )"
 # Print kernel version
 echo -e "$yellow Kernel:$reset $(uname -r) $(uname -m)" 
 # Print shell 
@@ -63,9 +63,9 @@ echo -e "$cyan User:$reset $(whoami)"
 echo -e "--------------------------------"
 echo ""
 
+# --- Store this directory as a variable ---
 currentDir=$(pwd)
-echo -e "$cyan Current directory:$reset $currentDir"
-echo -e ""
+echo -e "$yellow Current directory is:$reset $currentDir \n"
 
 echo -e "$greenbg Done. $reset"
 
