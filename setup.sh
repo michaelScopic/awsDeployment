@@ -94,6 +94,7 @@ curl -sS https://starship.rs/install.sh | sh
 
 # - Dotfiles -
 mkdir {tmp,~/.config} &> /dev/null
+wget -P tmp https://raw.githubusercontent.com/michaelScopic/dotfiles/main/zsh/init.sh 
 wget -P tmp https://raw.githubusercontent.com/michaelScopic/dotfiles/main/zsh/pluginInstall.sh 
 wget -P tmp https://raw.githubusercontent.com/michaelScopic/dotfiles/main/zsh/zshrc 
 wget -P tmp https://raw.githubusercontent.com/michaelScopic/dotfiles/main/config/starship/plain-text-symbols.toml 
